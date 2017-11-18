@@ -12,12 +12,13 @@ ActiveAdmin.register Product do
 #   permitted
 # end
 
-  permit_params :name, :description, :price, :promotion_price, :sub_category_id
+  permit_params :name, :description, :price, :promotion_price, :sub_category_id, :image
 
 
   form do |f|
     f.inputs do
       f.input :name
+      f.input :image, as: :file
       f.input :description, as: :ckeditor
       f.input :sub_category, :collection => option_groups_from_collection_for_select(Category.all, :sub_categories, :name, :id, :name, f.object.sub_category_id)
       f.input :price
@@ -45,6 +46,10 @@ ActiveAdmin.register Product do
       column :promotion_price
       column :sub_category
     end
+    panel "aaaDesc" do
+      image_tag product.image.url
+    end
+    h2
     panel "Desc" do
       p product.description.html_safe
     end
