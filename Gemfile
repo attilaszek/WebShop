@@ -43,6 +43,11 @@ gem 'activeadmin', '~> 1.1.0'
 gem 'devise', '~> 4.3.0'
 gem 'cancancan', '~> 2.1.1'
 
+# Ckeditor
+gem 'ckeditor', '~> 4.2.4'
+# Uploading files (images)
+gem 'paperclip'
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
