@@ -24,3 +24,7 @@
 
 # Ignore environment variables file
 /config/initializers/application_environment_variables.rb
+
+# Ignore images
+/public/ckeditor_assets/pictures
+/public/system/products/images

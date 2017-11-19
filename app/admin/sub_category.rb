@@ -1,4 +1,4 @@
-ActiveAdmin.register Category do
+ActiveAdmin.register SubCategory do
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
@@ -11,23 +11,24 @@ ActiveAdmin.register Category do
 #   permitted << :other if params[:action] == 'create' && current_user.admin?
 #   permitted
 # end
+  
+  permit_params :name, :category_id
+  
+  belongs_to :category
 
-  permit_params :name, sub_categories_attributes: [:id, :name, :_destroy]
-
-  show do
-    panel "Subcategories" do
-      table_for category.sub_categories do
-        column :id
-        column :name
-      end
+  form do |f|
+    f.inputs do
+      f.input :name
+      f.actions
     end
   end
 
   index do
     column :id
-    column :name do |category|
-      link_to(category.name, admin_category_sub_categories_path(category))
+    column :name do |sub_category|
+      link_to(sub_category.name, admin_sub_category_products_path(sub_category))
     end
+    column :category
     column :created_at
     column :updated_at
     actions

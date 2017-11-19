@@ -12,6 +12,8 @@ ActiveAdmin.register Product do
 #   permitted
 # end
 
+  belongs_to :sub_category
+
   permit_params :name, :description, :price, :promotion_price, :sub_category_id, :image
 
 
@@ -39,18 +41,19 @@ ActiveAdmin.register Product do
   end
 
   show do
-    h3 product.sub_category.category.name
     table_for product do
       column :name
       column :price
       column :promotion_price
       column :sub_category
+      column :created_at
+      column :updated_at
+      column "Image" do
+        image_tag product.image.url, class: "product_image"
+      end
     end
-    panel "aaaDesc" do
-      image_tag product.image.url
-    end
-    h2
-    panel "Desc" do
+
+    panel "Description", max_width: "500px" do
       p product.description.html_safe
     end
   end
