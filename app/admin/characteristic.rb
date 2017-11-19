@@ -14,7 +14,7 @@ ActiveAdmin.register Characteristic do
 
   belongs_to :sub_category
 
-  permit_params :name, :sub_category_id
+  permit_params :name, :allow_search, :sub_category_id
 
   breadcrumb do
     [
@@ -29,6 +29,7 @@ ActiveAdmin.register Characteristic do
     column :id
     column :name
     column :sub_category
+    column :allow_search
     column :created_at
     column :updated_at
     actions

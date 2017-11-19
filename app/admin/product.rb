@@ -14,7 +14,8 @@ ActiveAdmin.register Product do
 
   belongs_to :sub_category
 
-  permit_params :name, :description, :price, :promotion_price, :sub_category_id, :image
+  permit_params :name, :description, :price, :promotion_price, :sub_category_id, :image,
+    product_characteristics_attributes: [:id, :name, :product_id, :characteristic_id, :_destroy]
 
   breadcrumb do
     [
@@ -31,6 +32,11 @@ ActiveAdmin.register Product do
       f.input :description, as: :ckeditor
       f.input :price
       f.input :promotion_price
+      f.has_many :product_characteristics, allow_destroy: true do |p|
+        p.input :characteristic, as: :select, collection: Characteristic.where(:sub_category_id => product.sub_category.id).uniq
+        p.input :name
+        p.actions
+      end
       f.actions
     end
   end
@@ -60,8 +66,15 @@ ActiveAdmin.register Product do
       end
     end
 
-    panel "Description", max_width: "500px" do
+    panel "Description" do
       p product.description.html_safe
+    end
+
+    panel "Characteristics" do
+      table_for product.product_characteristics do |prod_char|
+        column :characteristic
+        column :name
+      end
     end
   end
 

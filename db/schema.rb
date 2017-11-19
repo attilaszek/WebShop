@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171119185051) do
+ActiveRecord::Schema.define(version: 20171119205557) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,6 +57,7 @@ ActiveRecord::Schema.define(version: 20171119185051) do
     t.bigint "sub_category_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "allow_search"
     t.index ["sub_category_id"], name: "index_characteristics_on_sub_category_id"
   end
 
@@ -71,6 +72,16 @@ ActiveRecord::Schema.define(version: 20171119185051) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["type"], name: "index_ckeditor_assets_on_type"
+  end
+
+  create_table "product_characteristics", force: :cascade do |t|
+    t.string "name"
+    t.bigint "product_id"
+    t.bigint "characteristic_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["characteristic_id"], name: "index_product_characteristics_on_characteristic_id"
+    t.index ["product_id"], name: "index_product_characteristics_on_product_id"
   end
 
   create_table "products", force: :cascade do |t|
@@ -97,6 +108,8 @@ ActiveRecord::Schema.define(version: 20171119185051) do
   end
 
   add_foreign_key "characteristics", "sub_categories"
+  add_foreign_key "product_characteristics", "characteristics"
+  add_foreign_key "product_characteristics", "products"
   add_foreign_key "products", "sub_categories"
   add_foreign_key "sub_categories", "categories"
 end
