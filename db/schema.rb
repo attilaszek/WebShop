@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171118223110) do
+ActiveRecord::Schema.define(version: 20171119185051) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,6 +52,14 @@ ActiveRecord::Schema.define(version: 20171118223110) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "characteristics", force: :cascade do |t|
+    t.string "name"
+    t.bigint "sub_category_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["sub_category_id"], name: "index_characteristics_on_sub_category_id"
+  end
+
   create_table "ckeditor_assets", force: :cascade do |t|
     t.string "data_file_name", null: false
     t.string "data_content_type"
@@ -88,6 +96,7 @@ ActiveRecord::Schema.define(version: 20171118223110) do
     t.index ["category_id"], name: "index_sub_categories_on_category_id"
   end
 
+  add_foreign_key "characteristics", "sub_categories"
   add_foreign_key "products", "sub_categories"
   add_foreign_key "sub_categories", "categories"
 end

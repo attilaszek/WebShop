@@ -1,4 +1,4 @@
-ActiveAdmin.register Product do
+ActiveAdmin.register Characteristic do
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
@@ -14,7 +14,7 @@ ActiveAdmin.register Product do
 
   belongs_to :sub_category
 
-  permit_params :name, :description, :price, :promotion_price, :sub_category_id, :image
+  permit_params :name, :sub_category_id
 
   breadcrumb do
     [
@@ -24,45 +24,14 @@ ActiveAdmin.register Product do
     ]
   end
 
-  form do |f|
-    f.inputs do
-      f.input :name
-      f.input :image, as: :file
-      f.input :description, as: :ckeditor
-      f.input :price
-      f.input :promotion_price
-      f.actions
-    end
-  end
-
   index do
     h2 link_to(sub_category.category.name, admin_category_sub_categories_path(sub_category.category.id)) + " / " + sub_category.name
     column :id
     column :name
-    column :price
-    column :promotion_price
     column :sub_category
     column :created_at
     column :updated_at
     actions
-  end
-  
-  show do
-    table_for product do
-      column :name
-      column :price
-      column :promotion_price
-      column :sub_category
-      column :created_at
-      column :updated_at
-      column "Image" do
-        image_tag product.image.url, class: "product_image"
-      end
-    end
-
-    panel "Description", max_width: "500px" do
-      p product.description.html_safe
-    end
   end
 
   controller do

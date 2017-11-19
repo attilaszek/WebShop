@@ -24,14 +24,33 @@ ActiveAdmin.register SubCategory do
   end
 
   index do
+    h2 category.name
     column :id
-    column :name do |sub_category|
-      link_to(sub_category.name, admin_sub_category_products_path(sub_category))
+    column :name
+    column do |sub_category|
+      link_to("Products", admin_sub_category_products_path(sub_category))
+    end
+    column do |sub_category|
+      link_to("Characteristics", admin_sub_category_characteristics_path(sub_category))
     end
     column :category
     column :created_at
     column :updated_at
     actions
+  end
+
+  controller do
+    def create
+      super do |format|
+        redirect_to collection_url and return if resource.valid?
+      end
+    end
+
+    def update
+      super do |format|
+        redirect_to collection_url and return if resource.valid?
+      end
+    end
   end
 
 end
