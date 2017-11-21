@@ -48,6 +48,15 @@ gem 'ckeditor', '~> 4.2.4'
 # Uploading files (images)
 gem 'paperclip'
 
+# Bootstrap
+gem 'bootstrap-sass', '~> 3.3'
+# Bootstrap navbar
+gem 'rails_bootstrap_navbar'
+# Bootstrap form
+gem 'bootstrap_form'
+
+gem 'jquery-rails'
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
