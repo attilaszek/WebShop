@@ -16,9 +16,11 @@ html
           - if user_signed_in?
             = navbar_dropdown "Logged in as #{current_user.first_name} #{current_user.last_name}" do
               = navbar_item 'Edit profile', edit_user_registration_path
+              = navbar_item 'My addresses', addresses_path
               = navbar_item 'Logout', destroy_user_session_path
           - else
             = navbar_item "Log In", '/users/sign_in'
+            = navbar_item "Sign Up", '/users/sign_up'
 
     div style="position:relative; margin-top:50px"
       p class="notice" style="color:green" = notice

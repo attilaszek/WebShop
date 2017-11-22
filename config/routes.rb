@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :addresses, except: [:show]
   root to: "products#index"
 
   resources :products, only: [:index, :show]

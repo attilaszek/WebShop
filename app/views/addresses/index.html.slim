@@ -1,0 +1,25 @@
+div style="width: 400px; margin: 0 auto;"
+  div style="text-align: center"
+
+    h3 Listing addresses for #{current_user.first_name} #{current_user.last_name}
+
+    = link_to 'Add new Address', new_address_path
+
+    - @addresses.each_with_index do |address, index|
+      div class="panel panel-default" style="text-align: left"
+        div class="panel-heading" Address ##{index + 1}
+        div class="panel-body"
+          address
+            = address.city
+            br
+            = address.address
+            br
+            = address.county
+            br
+            = address.country
+            br
+            = address.phone_number
+            br
+            = link_to 'Edit', edit_address_path(address)
+            '  | 
+            =link_to 'Destroy', address, data: { confirm: 'Are you sure?' }, method: :delete
