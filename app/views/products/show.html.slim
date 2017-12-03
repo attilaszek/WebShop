@@ -1,2 +1,38 @@
-h1 Products#show
-p Find me in app/views/products/show.html.slim
+= render "menu"
+
+article
+
+	h1 = @product.name
+	hr
+	div style="border: 2px; border-style: solid; border-radius: 5px; padding: 20px;"
+		= image_tag @product.image.url, class: "product_image"
+
+		div id="command-box" style="margin-left:20px"
+			h3 Price: #{@product.real_price} RON
+			- if @product.promotion_percent.present?
+				h3 -#{@product.promotion_percent}%
+				h4 Old price: #{@product.price} RON
+
+			= link_to @product, class: "a btn btn-default" do
+				h4 
+					= "Add to cart "
+					span class="glyphicon glyphicon-shopping-cart"
+
+		- if @product_characteristics.present?
+			hr
+			div class="panel panel-default"
+				div class="panel-heading" Product characteristics
+
+				table class="table"
+					thead
+						tr
+							th Characteristic
+							th Value
+					tbody
+						- @product_characteristics.each do |prod_char|
+							tr
+								td = prod_char.characteristic.name
+								td = prod_char.name
+
+	div style="border: 2px; border-style: solid; border-radius: 5px; padding: 20px;"
+		div = @product.description.html_safe

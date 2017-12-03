@@ -54,6 +54,8 @@ gem 'bootstrap-sass', '~> 3.3'
 gem 'rails_bootstrap_navbar'
 # Bootstrap form
 gem 'bootstrap_form'
+# Bootstrap dropdown
+gem 'bootstrap-select-rails'
 
 gem 'jquery-rails'
 

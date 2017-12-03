@@ -11,7 +11,7 @@ html
       = navbar_header brand: 'WebShop', brand_link: '/'
       = navbar_collapse do
         = navbar_group align: 'left' do
-          
+
         = navbar_group align: 'right' do
           - if user_signed_in?
             = navbar_dropdown "Logged in as #{current_user.first_name} #{current_user.last_name}" do
@@ -23,7 +23,6 @@ html
             = navbar_item "Sign Up", '/users/sign_up'
 
     div style="position:relative; margin-top:50px"
-      p class="notice" style="color:green" = notice
-      p class="alert" style="color:red" = alert
-
       = yield
+      /p class="notice" style="color:green" = notice
+      /p class="alert" style="color:red" = alert

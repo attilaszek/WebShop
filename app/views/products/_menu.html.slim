@@ -1,0 +1,16 @@
+span id="active-category-id-variable" style="display:none" = @active_category_id
+span id="active-sub-category-id-variable" style="display:none" = @active_sub_category_id
+
+nav id="sidebar"
+  h2 Select category
+  div
+    ul class="nav nav-pills nav-stacked"
+      - @categories.each_with_index do |category, index|
+        li role="presentation"
+          a data-toggle="collapse" data-target="#menu#{category.id}" #{category.name}
+
+        div id="menu#{category.id}" class="collapse"
+          - category.sub_categories_each do |sub_category|
+
+            li class="li-menu" id="sub-category#{sub_category.id}"
+              = link_to sub_category.name, products_path(:sub_category_id => sub_category.id)

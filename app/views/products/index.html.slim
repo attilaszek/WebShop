@@ -1,2 +1,31 @@
-h1 Products#index
-p Find me in app/views/products/index.html.slim
+= render "menu"
+
+article
+	
+	- if @searchable_characteristics.size > 0
+		= bootstrap_form_tag url: '/products', :method => 'get' do |f|
+			- @searchable_characteristics.each do |searchable_characteristic|
+				div style="float: left"
+					= f.select "search_param[#{searchable_characteristic.id}]", searchable_characteristic.product_characteristics_collect {|p| p.name }.uniq, { class: "selectpicker", label: searchable_characteristic.name, :include_blank => 'Any', :selected => selected_value(params[:search_param], searchable_characteristic)}, { style: "width:150px;" }
+
+			= f.hidden_field :sub_category_id, :value => @active_sub_category_id
+			= f.submit "Search", :style => "margin-top:24px", :method => 'get'
+
+	br clear="both"
+
+	- @products.each do |product|
+		div style="width:230px; float: left"
+			.thumbnail
+				div id="thumbnail"
+					= image_tag product.image.url, class: "thumbnail_image"
+				.caption
+					h4
+						= product.name
+					- if product.promotion_percent.present? 
+						h4 #{product.real_price} RON (-#{product.promotion_percent}%)
+					- else
+						h4 #{product.real_price} RON
+					p
+						= link_to "Show", product_path(product, :sub_category_id => params[:sub_category_id]), class: "a btn btn-default"
+						a.btn.btn-default[href="#" role="button"]
+							span class="glyphicon glyphicon-shopping-cart"

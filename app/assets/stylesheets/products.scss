@@ -1,3 +1,86 @@
 // Place all the styles related to the Products controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+body {
+  min-width: 700px;
+}
+
+#sidebar {
+    float: left;
+    max-width: 250px;
+    margin: 0;
+    padding: 1em;
+}
+
+#sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+   
+#sidebar ul a {
+    text-decoration: none;
+}
+
+article {
+    padding: 1em;
+    overflow: hidden;
+}
+
+.thumbnail_image {
+  max-width: 100%;
+  max-height: 100%;
+  margin-left: 35px;
+}
+
+#thumbnail {
+  width: 150px; height:150px;
+}
+
+.product_image {
+  width: 400px;
+  border-radius: 5px;
+}
+
+.caption h4 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.caption h4:hover {
+  overflow: scroll;
+  text-overflow: initial;
+}
+
+.li-menu {
+  margin-left: 40px;
+  text-indent: 5px;
+  border-radius: 3px;
+}
+
+.li-menu a {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.li-marked {
+  background-color: #bbb;
+}
+
+nav li {
+  cursor: pointer;
+}
+
+nav li:hover {
+  background-color: #ddd;
+}
+
+#command-box {
+  display:inline-block;
+}
+
+.panel {
+  width: 400px;
+}
