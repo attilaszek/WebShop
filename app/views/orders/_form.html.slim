@@ -1,0 +1,27 @@
+= bootstrap_form_for @order, layout: :horizontal, label_col: "col-sm-0" do |f|
+
+  table class="table" id="order_items"
+    thead
+      tr
+        th Name
+        th Price
+        th Quantity
+        th Total price
+        th
+    tbody
+      = f.fields_for :order_items do |ff|
+        t
+          td = link_to ff.object.product.name, product_path(ff.object.product)
+          td class="price_field" = ff.object.product.real_price
+          td = ff.number_field :quantity, min: 1, label: '&nbsp;'.html_safe, class: "quantity_field"
+          td class="total_price_field" = ff.object.product.real_price * ff.object.quantity
+          td = link_to 'Delete', order_item_path(ff.object), method: 'delete'
+      tr
+        th Total
+        th
+        th
+        th id="total_price"
+        th
+  = f.collection_select :address_id, @addresses, :id, :formatted_address, {:label => '&nbsp;'.html_safe}
+
+  .actions = f.submit

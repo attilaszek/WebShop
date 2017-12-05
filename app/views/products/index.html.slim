@@ -27,5 +27,7 @@ article
 						h4 #{product.real_price} RON
 					p
 						= link_to "Show", product_path(product, :sub_category_id => params[:sub_category_id]), class: "a btn btn-default"
-						a.btn.btn-default[href="#" role="button"]
+
+						= link_to order_items_path(order_item: {product_id: product.id}), method: "post",  class: "a btn btn-default" do
+							= "Add to cart "
 							span class="glyphicon glyphicon-shopping-cart"

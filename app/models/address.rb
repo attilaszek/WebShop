@@ -8,6 +8,10 @@ class Address < ApplicationRecord
   validates :phone_number, presence: true
   validate :validate_phone_number
 
+  def formatted_address
+    city + ", " + address + " (" + county + ", " + country + ")" 
+  end
+
   private
     def validate_phone_number
       if phone_number.present?

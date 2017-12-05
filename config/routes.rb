@@ -4,6 +4,10 @@ Rails.application.routes.draw do
 
   resources :products, only: [:index, :show]
 
+  resources :order_items, only: [:index, :create, :update, :destroy]
+
+  resources :orders, only: [:index, :show, :new, :create]
+
   devise_for :users, controllers: {
     confirmations: 'users/confirmations',
     #omniauth_callbacks: 'users/omniauth_callbacks',

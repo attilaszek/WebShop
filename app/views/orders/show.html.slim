@@ -1,0 +1,30 @@
+p#notice = notice
+
+div style="width: 500px; margin: auto"
+
+  h1 = "Order ##{@order.id}" 
+  hr
+  h4 = "Sent on #{@order.pretty_created_at}"
+  h4 = order_state(@order)
+
+  table class="table" id="order_items"
+    thead
+      tr
+        th Name
+        th Price
+        th Quantity
+        th Total price
+    tbody
+      - @order.order_items.each do |item|
+        tr
+          td = link_to item.product.name, product_path(item.product)
+          td = item.price
+          td = item.quantity
+          td = item.total_price
+      tr
+        th Total
+        th
+        th
+        th = @order.total_price
+
+  =< link_to 'Back', orders_path

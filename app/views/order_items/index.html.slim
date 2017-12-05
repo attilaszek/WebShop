@@ -1,0 +1,13 @@
+div style="width:400px; margin:auto;"
+  table class="table table-hover"
+    thead
+      tr
+        th Name
+        th Price
+        th Quantity
+    tbody
+      - @order_items.each do |order_item|
+        tr
+          td = order_item.product.name
+          td = order_item.product.price
+          td = order_item.quantity
