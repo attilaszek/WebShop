@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_action :set_order, only: [:show, :destroy]
+  before_action :set_order, only: [:show]
   before_action :authenticate_user!
 
   # GET /orders
@@ -27,8 +27,7 @@ class OrdersController < ApplicationController
     @order = Order.new(order_params)
     @order.completed = false
     @order.order_items.each do |item|
-      item.price = item.product.real_price
-      item.save
+      item.update(:price => item.product_real_price)
     end
 
     respond_to do |format|

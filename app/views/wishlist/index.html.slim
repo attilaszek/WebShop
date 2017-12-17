@@ -1,0 +1,30 @@
+div style="width:700px; margin:auto;"
+  h1 New order
+
+  hr
+
+  = link_to "Add products", '/products'
+  |  in your cart
+
+  hr
+
+  - if @products.present?
+    = bootstrap_form_tag layout: :horizontal, label_col: "col-sm-0" do |f|
+
+      table class="table" id="order_items"
+        thead
+          tr
+            th Name
+            th Price
+            th
+        tbody
+          - @products.each do |product|
+            tr
+              td = link_to product.name, product_path(product)
+              td class="price_field" = product.real_price
+              td = link_to "Remove", wishlist_destroy_path(product_id: product.id)
+
+    = link_to "Sign in", '/users/sign_in'
+    |  or 
+    = link_to "Sign up", '/users/sign_up'
+    |  to confirm your order

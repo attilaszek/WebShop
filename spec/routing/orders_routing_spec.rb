@@ -16,7 +16,7 @@ RSpec.describe OrdersController, type: :routing do
     end
 
     it "routes to #edit" do
-      expect(:get => "/orders/1/edit").to route_to("orders#edit", :id => "1")
+      expect(:get => "/orders/1/edit").not_to be_routable
     end
 
     it "routes to #create" do
@@ -24,15 +24,15 @@ RSpec.describe OrdersController, type: :routing do
     end
 
     it "routes to #update via PUT" do
-      expect(:put => "/orders/1").to route_to("orders#update", :id => "1")
+      expect(:put => "/orders/1").not_to be_routable
     end
 
     it "routes to #update via PATCH" do
-      expect(:patch => "/orders/1").to route_to("orders#update", :id => "1")
+      expect(:patch => "/orders/1").not_to be_routable
     end
 
     it "routes to #destroy" do
-      expect(:delete => "/orders/1").to route_to("orders#destroy", :id => "1")
+      expect(:delete => "/orders/1").not_to be_routable
     end
 
   end

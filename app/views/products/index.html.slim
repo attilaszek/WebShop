@@ -28,6 +28,4 @@ article
 					p
 						= link_to "Show", product_path(product, :sub_category_id => params[:sub_category_id]), class: "a btn btn-default"
 
-						= link_to order_items_path(order_item: {product_id: product.id}), method: "post",  class: "a btn btn-default" do
-							= "Add to cart "
-							span class="glyphicon glyphicon-shopping-cart"
+						= add_to_cart_button(product.id)

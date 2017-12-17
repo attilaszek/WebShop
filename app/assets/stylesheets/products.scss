@@ -42,17 +42,6 @@ article {
   border-radius: 5px;
 }
 
-.caption h4 {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.caption h4:hover {
-  overflow: scroll;
-  text-overflow: initial;
-}
-
 .li-menu {
   margin-left: 40px;
   text-indent: 5px;

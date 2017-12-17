@@ -12,11 +12,11 @@ html
       = navbar_collapse do
         = navbar_group align: 'left' do
 
-        = navbar_group align: 'right' do
-          = navbar_item new_order_path do
+        = navbar_group align: 'right' do  
+          = navbar_item cart_path do
             span.glyphicon.glyphicon-shopping-cart
             span = "  Cart #{number_of_items_in_cart}"
-            //Contact Us!
+
           - if user_signed_in?
             = navbar_dropdown "Logged in as #{current_user.first_name} #{current_user.last_name}" do
               = navbar_item 'Edit profile', edit_user_registration_path

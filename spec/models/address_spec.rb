@@ -36,4 +36,15 @@ RSpec.describe Address, type: :model do
     end
   end
 
+  describe "formatted_address" do
+    it "returns pretty address" do
+      address = Address.create(
+                  :country => "Romania", 
+                  :county => "Cluj",
+                  :city => "Cluj-Napoca",
+                  :address => "Baritiu 26")
+      expect(address.formatted_address).to eq("Cluj-Napoca, Baritiu 26 (Cluj, Romania)")
+    end
+  end
+
 end

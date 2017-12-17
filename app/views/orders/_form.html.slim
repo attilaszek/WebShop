@@ -10,11 +10,11 @@
         th
     tbody
       = f.fields_for :order_items do |ff|
-        t
-          td = link_to ff.object.product.name, product_path(ff.object.product)
-          td class="price_field" = ff.object.product.real_price
+        tr
+          td = link_to ff.object.product_name, product_path(ff.object.product)
+          td class="price_field" = ff.object.product_real_price
           td = ff.number_field :quantity, min: 1, label: '&nbsp;'.html_safe, class: "quantity_field"
-          td class="total_price_field" = ff.object.product.real_price * ff.object.quantity
+          td class="total_price_field" = ff.object.product_real_price * ff.object.quantity
           td = link_to 'Delete', order_item_path(ff.object), method: 'delete'
       tr
         th Total

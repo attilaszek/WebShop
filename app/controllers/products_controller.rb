@@ -29,7 +29,6 @@ class ProductsController < ApplicationController
   end
 
   def show
-    # TODO -> wishlist: (session[:wishlist] ||= []) << params[:id]
     @categories = Category.all
     if params[:sub_category_id].present?
       @active_sub_category_id = params[:sub_category_id]

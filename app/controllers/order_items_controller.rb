@@ -9,14 +9,7 @@ class OrderItemsController < ApplicationController
   # POST /order_items
   # POST /order_items.json
   def create
-    @order_item = OrderItem.find_unconfirmed_by_product_and_user(order_item_params[:product_id], current_user.id)
-    if @order_item.blank?
-      @order_item = OrderItem.new(order_item_params)
-      @order_item.user_id = current_user.id
-      @order_item.quantity = 1
-    else
-      @order_item.quantity += 1
-    end
+    @order_item = OrderItem.create_or_update(order_item_params[:product_id], current_user.id)
 
     respond_to do |format|
       if @order_item.save
@@ -32,7 +25,6 @@ class OrderItemsController < ApplicationController
   # PATCH/PUT /order_items/1
   # PATCH/PUT /order_items/1.json
   def update
-    p "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
     respond_to do |format|
       if @order_item.update(order_item_params)
         format.html { redirect_to action: 'index', notice: 'order_item was successfully updated.' }

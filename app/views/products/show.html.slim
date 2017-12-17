@@ -13,11 +13,8 @@ article
 				h3 -#{@product.promotion_percent}%
 				h4 Old price: #{@product.price} RON
 
-			= link_to @product, class: "a btn btn-default" do
-				h4 
-					= "Add to cart "
-					span class="glyphicon glyphicon-shopping-cart"
-
+			h4 = add_to_cart_button(@product.id, 'h4')
+		
 		- if @product_characteristics.present?
 			hr
 			div class="panel panel-default"
